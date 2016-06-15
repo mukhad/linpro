@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
    int *buf1, *buf2,*buf;
    int sz = 1000;
 
-   key_t key=0,key1=0, key2=0;
+   key_t key1=0, key2=0;
 
    key1 = atoi(argv[1]);
    key2 = atoi(argv[2]);
@@ -22,6 +22,7 @@ int main(int argc, char **argv) {
    int id2 = shmget(key2,sz,0660);
    buf2 = (int*)shmat(id2,NULL,0);
 
+   key_t key = ftok("mytmp",1);
    int id = shmget(key,sz,0660|IPC_CREAT);
    buf = (int*)shmat(id,NULL,0);
 
